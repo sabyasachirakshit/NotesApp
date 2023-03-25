@@ -20,6 +20,10 @@ function MainScreen() {
       .then((response) => {
         if (response.ok) {
           setSuccessMessage("Notes added successfully.");
+          setNotes("");
+          setTimeout(() => {
+            setSuccessMessage("");
+          }, 2000); // Set timeout to clear message after 2 seconds
         } else {
           throw new Error("Failed to add notes.");
         }
