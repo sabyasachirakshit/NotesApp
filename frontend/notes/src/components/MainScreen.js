@@ -30,7 +30,10 @@ function MainScreen() {
       })
       .catch((error) => {
         console.error(error);
-        setSuccessMessage("Failed to add notes. Please try again later.");
+        setSuccessMessage("Server is under Maintenance. Failed to add notes. Please try again later.");
+        setTimeout(() => {
+          setSuccessMessage("");
+        }, 5000);
       });
   };
 
@@ -64,7 +67,7 @@ function MainScreen() {
           Clear Note
         </Button>
       </div>
-      {successMessage && <p>{successMessage}</p>}
+      {successMessage && <b>{successMessage}</b>}
     </div>
   );
 }
