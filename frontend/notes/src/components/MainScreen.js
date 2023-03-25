@@ -3,13 +3,31 @@ import { Button } from "react-bootstrap";
 
 function MainScreen() {
   const [notes, setNotes] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const handleClear = () => {
     setNotes("");
   };
 
   const handleSubmit = () => {
-    // handle submission logic here
+    fetch("http://localhost:3001/text", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ note: notes }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          setSuccessMessage("Notes added successfully.");
+        } else {
+          throw new Error("Failed to add notes.");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        setSuccessMessage("Failed to add notes. Please try again later.");
+      });
   };
 
   return (
@@ -42,6 +60,7 @@ function MainScreen() {
           Clear Note
         </Button>
       </div>
+      {successMessage && <p>{successMessage}</p>}
     </div>
   );
 }
