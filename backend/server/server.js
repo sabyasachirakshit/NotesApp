@@ -36,6 +36,11 @@ app.delete("/delete", (req, res) => {
   }
 });
 
+app.delete("/deleteallnotes", (req, res) => {
+  notes.splice(0, notes.length);
+  res.status(200).send("All notes deleted");
+});
+
 app.listen(3001, () => {
   console.log("Server started on port 3001");
 });

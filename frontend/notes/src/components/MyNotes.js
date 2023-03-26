@@ -128,9 +128,43 @@ function MyNotes() {
       });
   };
 
+  const deleteAllNotes = () => {
+    if (window.confirm("Are you sure you want to delete all notes?")) {
+      fetch("http://localhost:3001/deleteallnotes", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => {
+          if (response.ok) {
+            window.location.reload();
+          } else {
+            throw new Error("Failed to delete notes.");
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  };
+
   return (
     <div className="notes-screen" style={{ paddingLeft: "20px" }}>
-      <h1>Your Notes</h1>
+      <div
+        className="head-section"
+        style={{
+          display: "flex",
+          gap: "20px",
+          paddingBottom: "20px",
+          paddingTop: "20px",
+        }}
+      >
+        <h1>Your Notes</h1>
+        <Button variant="danger" onClick={() => deleteAllNotes()}>
+          Delete All Notes
+        </Button>
+      </div>
       <div
         className="notes-div"
         style={{
