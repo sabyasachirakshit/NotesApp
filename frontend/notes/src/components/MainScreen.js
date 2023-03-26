@@ -30,7 +30,9 @@ function MainScreen() {
       })
       .catch((error) => {
         console.error(error);
-        setSuccessMessage("Server is under Maintenance. Failed to add notes. Please try again later.");
+        setSuccessMessage(
+          "Server is under Maintenance. Failed to add notes. Please try again later."
+        );
         setTimeout(() => {
           setSuccessMessage("");
         }, 5000);
