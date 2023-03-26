@@ -44,7 +44,7 @@ function MyNotes() {
   };
 
   return (
-    <div className="notes-screen">
+    <div className="notes-screen" style={{ paddingLeft: "20px" }}>
       <h1>Your Notes</h1>
       <div
         className="notes-div"
